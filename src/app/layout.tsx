@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Nav from '@/component/nav';
+import Nav from '@/component/Nav';
 
 //Header, Nav
 
@@ -17,7 +17,9 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <Nav />
+        <header>
+          <Nav />
+        </header>
         {children}
       </body>
     </html>
