@@ -10,9 +10,11 @@ interface ListData {
 interface Props {
   name: string;
   data: ListData[];
+  required: boolean;
+  onValueChange?: (value: string) => void;
 }
 
-export default function SelectList({ name, data }: Props) {
+export default function SelectList({ name, data, required, onValueChange }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [typing, setTyping] = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
@@ -20,6 +22,14 @@ export default function SelectList({ name, data }: Props) {
   const handleClickOutside = (event: MouseEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsOpen(false);
+
+      const isValid = data.some((item) => item.label === typing);
+      if (!isValid) {
+        setTyping('');
+      }
+      if (onValueChange) {
+        onValueChange(typing);
+      }
     }
   };
 
@@ -32,15 +42,19 @@ export default function SelectList({ name, data }: Props) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  });
 
   return (
     <div ref={menuRef} className="relative w-full">
-      <label className="block text-sm font-medium text-gray-700 mb-1">{name}</label>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+        {name}
+      </label>
       <input
+        id={name}
+        name={name}
         type="text"
         value={typing}
-        required
+        required={required}
         placeholder={`${name} 선택`}
         className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         onFocus={() => setIsOpen(true)}
@@ -55,9 +69,12 @@ export default function SelectList({ name, data }: Props) {
             filterList.map((e) => (
               <li
                 key={e.value}
-                onMouseDown={() => {
+                onClick={() => {
                   setTyping(e.label);
                   setIsOpen(false);
+                  if (onValueChange) {
+                    onValueChange(e.label);
+                  }
                 }}
                 className="px-4 py-2 cursor-pointer hover:bg-blue-100 transition-colors"
               >
