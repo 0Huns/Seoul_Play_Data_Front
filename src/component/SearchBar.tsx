@@ -10,8 +10,11 @@ import {
 } from '@/data/selectData';
 import SelectList from './SelectList';
 import { useEffect, useMemo, useState } from 'react';
+// import { useRouter } from 'next/router';
 
 export default function SearchBar() {
+  // const router = useRouter();
+
   const [detail, setDetail] = useState(false);
   const [valueFromChild, setValueFromChild] = useState('');
 
@@ -29,19 +32,22 @@ export default function SearchBar() {
 
   return (
     <form
+      action={'/search'}
+      method="POST"
       autoComplete="off"
       className="w-full max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6"
     >
       <span className="block text-sm font-bold text-gray-700 mb-1">필수 선택</span>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <SelectList name="선호업종" data={industryOptions} required={true} />
         <SelectList
-          name="지역구"
+          id="지역구"
+          name="gu"
           data={districtOptions}
           required={true}
           onValueChange={handleValueChange}
         />
-        <SelectList name="상권구분" data={commercialOptions} required={true} />
+        <SelectList id="선호업종" name="category" data={industryOptions} required={true} />
+        <SelectList id="상권구분" name="area_type" data={commercialOptions} required={true} />
       </div>
       <div
         className="block w-1/3 text-sm font-bold text-gray-700 mb-1 cursor-pointer"
@@ -52,9 +58,9 @@ export default function SearchBar() {
       </div>
       {detail && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <SelectList name="행정동" data={filteredSubDistricts} required={false} />
-          <SelectList name="타겟 연령대" data={ageGroupOptions} required={false} />
-          <SelectList name="타겟 성별" data={genderOptions} required={false} />
+          <SelectList id="행정동" name="dong" data={filteredSubDistricts} required={false} />
+          <SelectList id="타겟 연령대" name="age" data={ageGroupOptions} required={false} />
+          <SelectList id="타겟 성별" name="gender" data={genderOptions} required={false} />
         </div>
       )}
       <div className="flex justify-end">

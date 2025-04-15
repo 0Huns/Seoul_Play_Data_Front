@@ -8,13 +8,14 @@ interface ListData {
 }
 
 interface Props {
+  id: string;
   name: string;
   data: ListData[];
   required: boolean;
   onValueChange?: (value: string) => void;
 }
 
-export default function SelectList({ name, data, required, onValueChange }: Props) {
+export default function SelectList({ id, name, data, required, onValueChange }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [typing, setTyping] = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
@@ -46,16 +47,16 @@ export default function SelectList({ name, data, required, onValueChange }: Prop
 
   return (
     <div ref={menuRef} className="relative w-full">
-      <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
-        {name}
+      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+        {id}
       </label>
       <input
-        id={name}
+        id={id}
         name={name}
         type="text"
         value={typing}
         required={required}
-        placeholder={`${name} 선택`}
+        placeholder={`${id} 선택`}
         className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         onFocus={() => setIsOpen(true)}
         onChange={(e) => {
