@@ -1,4 +1,5 @@
 export const industryOptions = [
+  { value: 'all', label: '전체' },
   { value: 'pcbang', label: 'PC방' },
   { value: 'furniture', label: '가구' },
   { value: 'bag', label: '가방' },
@@ -64,6 +65,7 @@ export const industryOptions = [
 ];
 
 export const commercialOptions = [
+  { value: 'all', label: '전체' },
   { value: 'alley', label: '골목상권' },
   { value: 'specialTourist', label: '관광특구' },
   { value: 'developed', label: '발달상권' },
@@ -71,6 +73,7 @@ export const commercialOptions = [
 ];
 
 export const districtOptions = [
+  { value: 'all', label: '전체' },
   { value: 'gangnam', label: '강남구' },
   { value: 'gangdong', label: '강동구' },
   { value: 'gangbuk', label: '강북구' },
