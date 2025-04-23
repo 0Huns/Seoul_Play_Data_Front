@@ -61,51 +61,70 @@ export default function SearchBar() {
     { id: '타겟 성별', name: 'gender', data: genderOptions, required: false },
   ];
 
-  const containerClass = 'grid grid-cols-1 md:grid-cols-2 gap-6';
-
   return (
     <form
       onSubmit={handleSubmit}
       autoComplete="off"
-      className="w-full max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6"
+      className="w-full max-w-5xl mx-auto px-8 py-6 bg-white/60 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-200 flex flex-col gap-6"
     >
-      <span className="block text-sm font-bold text-gray-700 mb-1">필수 선택</span>
-      <div className={containerClass}>
+      {/* 제목 */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-sm font-bold text-neutral-700 tracking-tight">필수 조건</h2>
+      </div>
+
+      {/* 필수 필드 그룹 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {requiredFields.map((field) => (
-          <SelectList
+          <div
             key={field.name}
-            id={field.id}
-            name={field.name}
-            data={field.data}
-            required={field.required}
-            onValueChange={field.name === 'gu' ? handleValueChange : undefined}
-          />
-        ))}
-      </div>
-      <div
-        className="block w-1/3 text-sm font-bold text-gray-700 mb-1 cursor-pointer"
-        onClick={() => setDetail(!detail)}
-      >
-        {detail ? <span>▲ </span> : <span>▼ </span>}
-        상세조건
-      </div>
-      {detail && (
-        <div className={containerClass}>
-          {optionalFields.map((field) => (
+            className="bg-white rounded-xl hover:bg-gray-200 transition-colors shadow-sm px-4 py-3 border border-gray-100"
+          >
             <SelectList
-              key={field.name}
               id={field.id}
               name={field.name}
               data={field.data}
               required={field.required}
+              onValueChange={field.name === 'gu' ? handleValueChange : undefined}
             />
+          </div>
+        ))}
+      </div>
+
+      {/* 상세 조건 toggle */}
+      <div className="flex justify-between items-center">
+        <button
+          type="button"
+          onClick={() => setDetail(!detail)}
+          className="text-sm text-neutral-600 font-medium hover:text-neutral-800 transition-colors flex items-center gap-1"
+        >
+          {detail ? '▲ 상세 조건 숨기기' : '▼ 상세 조건 열기'}
+        </button>
+      </div>
+
+      {/* 상세 필드 그룹 */}
+      {detail && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {optionalFields.map((field) => (
+            <div
+              key={field.name}
+              className="bg-white rounded-xl hover:bg-gray-200 transition-colors shadow-sm px-4 py-3 border border-gray-100"
+            >
+              <SelectList
+                id={field.id}
+                name={field.name}
+                data={field.data}
+                required={field.required}
+              />
+            </div>
           ))}
         </div>
       )}
+
+      {/* 검색 버튼 */}
       <div className="flex justify-end">
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:brightness-110"
         >
           검색
         </button>

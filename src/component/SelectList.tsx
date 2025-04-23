@@ -46,30 +46,49 @@ export default function SelectList({ id, name, data, required, onValueChange }: 
   });
 
   return (
-    <div ref={menuRef} className="relative w-full">
+    <div ref={menuRef} className="relative w-full py-2 px-5">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
         {id}
       </label>
-      <input
-        id={id}
-        name={name}
-        type="text"
-        value={typing}
-        required={required}
-        placeholder={`${id} 선택`}
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        onFocus={() => setIsOpen(true)}
-        onChange={(e) => {
-          setIsOpen(true);
-          setTyping(e.target.value);
-        }}
-      />
+      <div className="flex items-center justify-between">
+        <input
+          id={id}
+          name={name}
+          type="text"
+          value={typing}
+          required={required}
+          placeholder={`${id} 선택`}
+          className="w-full py-2 bg-transparent border-none focus:outline-none focus:ring-0 placeholder-gray-500 text-sm cursor-pointer"
+          onFocus={() => setIsOpen(true)}
+          onChange={(e) => {
+            setIsOpen(true);
+            setTyping(e.target.value);
+          }}
+        />
+        {typing && (
+          <span className="hover:cursor-pointer" onClick={() => setTyping('')}>
+            x
+          </span>
+        )}{' '}
+      </div>
+
       {isOpen && (
-        <ul className="absolute z-10 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-lg">
+        <ul className="absolute left-0 z-20 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-md">
           {filterList.length > 0 ? (
             filterList.map((e) => (
               <li
                 key={e.value}
+                tabIndex={0}
+                role={e.label}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    setTyping(e.label);
+                    setIsOpen(false);
+                    if (onValueChange) {
+                      onValueChange(e.label);
+                    }
+                  }
+                }}
                 onClick={() => {
                   setTyping(e.label);
                   setIsOpen(false);
@@ -77,13 +96,13 @@ export default function SelectList({ id, name, data, required, onValueChange }: 
                     onValueChange(e.label);
                   }
                 }}
-                className="px-4 py-2 cursor-pointer hover:bg-blue-100 transition-colors"
+                className="px-4 py-2 text-sm cursor-pointer focus:font-bold focus:outline-none focus:bg-blue-50 hover:bg-blue-50 transition-colors"
               >
                 {e.label}
               </li>
             ))
           ) : (
-            <li className="px-4 py-2 text-gray-500">결과 없음</li>
+            <li className="px-4 py-2 text-sm text-gray-400">검색 결과 없음</li>
           )}
         </ul>
       )}
