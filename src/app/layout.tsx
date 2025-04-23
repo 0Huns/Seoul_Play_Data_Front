@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body>
+      <body className="bg-[#f5f5f5]">
         <header>
           <Nav />
         </header>
