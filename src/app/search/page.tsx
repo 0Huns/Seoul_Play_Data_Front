@@ -9,7 +9,7 @@ async function fetchData(searchParams: Promise<URLSearchParams>) {
   const params = await searchParams;
   const decodedParams = Object.entries(params).reduce(
     (acc, [key, value]) => {
-      if (value === null) {
+      if (value === 'null') {
         acc[key] = null;
       } else if (Array.isArray(value)) {
         acc[key] = value.map(decodeURIComponent);
@@ -22,7 +22,7 @@ async function fetchData(searchParams: Promise<URLSearchParams>) {
   );
 
   try {
-    const response = await fetch('http://localhost:8000/api/recommend/', {
+    const response = await fetch(`${process.env.API_BASE_URL}/api/recommend/`, {
       method: 'POST',
       body: JSON.stringify(decodedParams),
       headers: {
