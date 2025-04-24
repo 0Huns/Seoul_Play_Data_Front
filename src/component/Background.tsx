@@ -31,7 +31,7 @@ export default function Background() {
           }}
         />
         <Label position={[0, 2, 0]} text="Seoul-Play" />
-        <StoreModel scale={0.8} />
+        <StoreModel scale={0.9} />
       </Canvas>
     </div>
   );

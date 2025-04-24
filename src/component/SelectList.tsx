@@ -46,34 +46,38 @@ export default function SelectList({ id, name, data, required, onValueChange }: 
   });
 
   return (
-    <div ref={menuRef} className="relative w-full py-2 px-5">
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+    <div ref={menuRef} className="relative w-full">
+      <label
+        htmlFor={id}
+        className="block px-9 py-6 text-sm font-medium text-gray-700 cursor-pointer"
+      >
         {id}
+
+        <div className="flex items-center justify-between mt-1">
+          <input
+            id={id}
+            name={name}
+            type="text"
+            value={typing}
+            required={required}
+            placeholder={`${id} 선택`}
+            className="w-full py-2 bg-transparent border-none focus:outline-none focus:ring-0 placeholder-gray-500 text-sm cursor-pointer"
+            onFocus={() => setIsOpen(true)}
+            onChange={(e) => {
+              setIsOpen(true);
+              setTyping(e.target.value);
+            }}
+          />
+          {typing && (
+            <span className="hover:cursor-pointer p-2" onClick={() => setTyping('')}>
+              x
+            </span>
+          )}{' '}
+        </div>
       </label>
-      <div className="flex items-center justify-between">
-        <input
-          id={id}
-          name={name}
-          type="text"
-          value={typing}
-          required={required}
-          placeholder={`${id} 선택`}
-          className="w-full py-2 bg-transparent border-none focus:outline-none focus:ring-0 placeholder-gray-500 text-sm cursor-pointer"
-          onFocus={() => setIsOpen(true)}
-          onChange={(e) => {
-            setIsOpen(true);
-            setTyping(e.target.value);
-          }}
-        />
-        {typing && (
-          <span className="hover:cursor-pointer" onClick={() => setTyping('')}>
-            x
-          </span>
-        )}{' '}
-      </div>
 
       {isOpen && (
-        <ul className="absolute left-0 z-20 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-md">
+        <ul className="absolute left-0 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-md">
           {filterList.length > 0 ? (
             filterList.map((e) => (
               <li

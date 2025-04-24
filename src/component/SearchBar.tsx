@@ -65,7 +65,7 @@ export default function SearchBar() {
     <form
       onSubmit={handleSubmit}
       autoComplete="off"
-      className="w-full max-w-5xl mx-auto px-8 py-6 bg-white/60 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-200 flex flex-col gap-6"
+      className="w-full max-w-5xl mx-auto px-8 py-6 bg-white/60 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-400 flex flex-col gap-6"
     >
       {/* 제목 */}
       <div className="flex items-center justify-between">
@@ -77,7 +77,7 @@ export default function SearchBar() {
         {requiredFields.map((field) => (
           <div
             key={field.name}
-            className="bg-white rounded-xl hover:bg-gray-200 transition-colors shadow-sm px-4 py-3 border border-gray-100"
+            className="z-10 bg-white rounded-xl hover:bg-gray-100 active:scale-95 transition-all shadow-md hover:shadow-lg border border-gray-300 font-medium cursor-pointer"
           >
             <SelectList
               id={field.id}
@@ -107,7 +107,7 @@ export default function SearchBar() {
           {optionalFields.map((field) => (
             <div
               key={field.name}
-              className="bg-white rounded-xl hover:bg-gray-200 transition-colors shadow-sm px-4 py-3 border border-gray-100"
+              className="z-9 bg-white rounded-xl hover:bg-gray-100 active:scale-95 transition-all shadow-md hover:shadow-lg border border-gray-300 font-medium cursor-pointer"
             >
               <SelectList
                 id={field.id}
