@@ -15,9 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body className="bg-[#f5f5f5]">
-        <header>
+    <html className="">
+      <body className="bg-[#f5f5f5] w-full max-w-7xl mx-auto h-full">
+        <header className="w-full h-[3vh]">
           <Nav />
         </header>
         {children}
