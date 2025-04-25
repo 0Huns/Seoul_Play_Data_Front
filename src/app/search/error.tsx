@@ -1,12 +1,25 @@
 // app/error.tsx
 'use client';
 
-export default function ErrorPage({ error, reset }: { error: Error; reset: () => void }) {
+import Image from 'next/image';
+import Logo from '../../../public/images/PickOn_Logo.png';
+import { useRouter } from 'next/navigation';
+
+export default function ErrorPage() {
+  const router = useRouter();
   return (
-    <div className="error-container">
-      <h1>문제가 발생했습니다</h1>
-      <p>{error.message}</p>
-      <button onClick={() => reset()}>다시 시도</button>
+    <div className="relative h-screen overflow-hidden bg-indigo-900">
+      <Image alt="logo" src={Logo} className="absolute object-cover w-full h-full" />
+      <div className="absolute inset-0 bg-black opacity-25"></div>
+      <div className="container relative z-10 flex items-center px-6 py-32 mx-auto md:px-12 xl:py-40">
+        <div className="relative z-10 flex flex-col items-center w-full font-mono">
+          <h1 className="mt-4 text-5xl font-extrabold leading-tight text-center text-white">
+            You&#x27;re alone here
+          </h1>
+          <p className="font-extrabold text-white text-8xl my-44 animate-bounce">404</p>
+          <button onClick={() => router.push('/')}>Back To Home</button>
+        </div>
+      </div>
     </div>
   );
 }
