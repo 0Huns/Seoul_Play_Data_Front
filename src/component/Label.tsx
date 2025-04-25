@@ -1,14 +1,15 @@
 'use client';
 
 import { Html } from '@react-three/drei';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Logo from '../../public/images/PickOn_Logo.png';
 
 interface LabelProps {
   position: [number, number, number];
-  text: string;
 }
 
-export default function Label({ position, text }: LabelProps) {
+export default function Label({ position }: LabelProps) {
   const router = useRouter();
 
   return (
@@ -18,14 +19,12 @@ export default function Label({ position, text }: LabelProps) {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          background: 'rgba(255, 255, 255, 0.473)',
-          padding: '8px 8px',
-          width: '200px',
+          width: '100px',
           borderRadius: '4px',
           cursor: 'pointer',
         }}
       >
-        {text}
+        <Image alt="logo" src={Logo} />
       </div>
     </Html>
   );
