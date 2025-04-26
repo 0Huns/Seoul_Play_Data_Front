@@ -11,17 +11,17 @@ import {
 import SelectList from './SelectList';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { FiSearch, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { MdOutlineSettings } from 'react-icons/md';
+import FormSkeleton from './FormSkeleton';
 
 export default function SearchBar() {
   const router = useRouter();
-
   const [detail, setDetail] = useState(false);
   const [valueFromChild, setValueFromChild] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const handleSubmit = (e: {
-    preventDefault: () => void;
-    currentTarget: HTMLFormElement | undefined;
-  }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -49,6 +49,10 @@ export default function SearchBar() {
     setDetail(false);
   }, [valueFromChild]);
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const requiredFields = [
     { id: '지역구', name: 'gu', data: districtOptions, required: true },
     { id: '선호업종', name: 'category', data: industryOptions, required: true },
@@ -61,15 +65,22 @@ export default function SearchBar() {
     { id: '타겟 성별', name: 'gender', data: genderOptions, required: false },
   ];
 
+  if (loading) {
+    return <FormSkeleton />;
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
       autoComplete="off"
-      className="w-full max-w-5xl mx-auto px-8 py-6 bg-white/60 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-400 flex flex-col gap-6"
+      className="w-full max-w-5xl mx-auto px-8 py-6 bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-300 flex flex-col gap-6"
     >
       {/* 제목 */}
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-neutral-700 tracking-tight">필수 조건</h2>
+        <h2 className="flex items-center gap-2 text-sm font-bold text-neutral-700 tracking-tight">
+          <MdOutlineSettings className="text-lg text-red-400" />
+          필수 조건
+        </h2>
       </div>
 
       {/* 필수 필드 그룹 */}
@@ -97,7 +108,8 @@ export default function SearchBar() {
           onClick={() => setDetail(!detail)}
           className="text-sm text-neutral-600 font-medium hover:text-neutral-800 transition-colors flex items-center gap-1"
         >
-          {detail ? '▲ 상세 조건 숨기기' : '▼ 상세 조건 열기'}
+          {detail ? <FiChevronUp className="text-base" /> : <FiChevronDown className="text-base" />}
+          {detail ? '상세 조건 숨기기' : '상세 조건 열기'}
         </button>
       </div>
 
@@ -124,9 +136,10 @@ export default function SearchBar() {
       <div className="flex justify-end">
         <button
           type="submit"
-          className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:brightness-110"
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-transform duration-200 transform hover:scale-105"
         >
-          검색
+          <FiSearch className="text-xl" />
+          <span>검색</span>
         </button>
       </div>
     </form>
