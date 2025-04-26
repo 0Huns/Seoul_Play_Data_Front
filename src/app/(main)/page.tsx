@@ -1,5 +1,5 @@
-import HotTopic from '@/component/HotTopic';
-import SearchBar from '@/component/SearchBar';
+import HotTopic from '@/component/hotTopic/HotTopic';
+import SearchBar from '@/component/selectForm/SearchBar';
 import { Suspense } from 'react';
 import LoadingCP from '@/component/LoadingCP';
 

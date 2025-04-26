@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Nav from '@/component/Nav';
+import Nav from '@/component/nav/Nav';
 
 export const metadata: Metadata = {
   title: 'Seoul-Play',
