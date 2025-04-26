@@ -17,11 +17,11 @@ type Props = {
 
 export default function Card({ data }: Props) {
   const sections = [
-    { title: '🔥 인기 구', items: data.hot_gu },
-    { title: '📍 인기 동', items: data.hot_dong },
-    { title: '🛒 인기 카테고리', items: data.hot_category },
-    { title: '🙋‍♂️ 인기 성별', items: data.hot_gender },
-    { title: '👶 인기 연령대', items: data.hot_age },
+    { title: '인기 구', items: data.hot_gu },
+    { title: '인기 동', items: data.hot_dong },
+    { title: '인기 카테고리', items: data.hot_category },
+    { title: '인기 성별', items: data.hot_gender },
+    { title: '인기 연령대', items: data.hot_age },
   ];
 
   return (
