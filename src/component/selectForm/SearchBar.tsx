@@ -14,12 +14,21 @@ import { useRouter } from 'next/navigation';
 import { FiSearch, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { MdOutlineSettings } from 'react-icons/md';
 import FormSkeleton from './FormSkeleton';
+import Cookies from 'js-cookie';
+import Login from '../auth/Login';
 
 export default function SearchBar() {
   const router = useRouter();
   const [detail, setDetail] = useState(false);
   const [valueFromChild, setValueFromChild] = useState('');
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
+
+  // 쿠키에서 로그인 상태 확인
+  useEffect(() => {
+    const isLoggedInCookie = Cookies.get('isLoggedIn'); // js-cookie로 쿠키 읽기
+    setIsLoggedIn(isLoggedInCookie === 'true');
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -133,15 +142,21 @@ export default function SearchBar() {
       )}
 
       {/* 검색 버튼 */}
-      <div className="flex justify-end">
-        <button
-          type="submit"
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-transform duration-200 transform hover:scale-105"
-        >
-          <FiSearch className="text-xl" />
-          <span>검색</span>
-        </button>
-      </div>
+      {isLoggedIn ? (
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-transform duration-200 transform hover:scale-105"
+          >
+            <FiSearch className="text-xl" />
+            <span>검색</span>
+          </button>
+        </div>
+      ) : (
+        <div className="flex justify-end">
+          <Login />
+        </div>
+      )}
     </form>
   );
 }
