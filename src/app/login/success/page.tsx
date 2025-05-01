@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import LoginSuccessContent from '../../../component/LoginSuccessContent';
+import LoginSuccessContent from '../../../component/auth/LoginSuccessContent';
 
 export default function LoginSuccessPage() {
   return (

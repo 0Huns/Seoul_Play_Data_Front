@@ -1,11 +1,13 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { JSX, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { FaHome, FaComments } from 'react-icons/fa';
-import Login from './Login';
+import Login from '../auth/Login';
+import Logout from '../auth/Logout';
 
 interface NavLink {
   name: string;
@@ -24,6 +26,13 @@ const icons: Record<string, JSX.Element> = {
 export default function NavClient({ navLinks }: NavClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
+
+  // 쿠키에서 로그인 상태 확인
+  useEffect(() => {
+    const isLoggedInCookie = Cookies.get('isLoggedIn'); // js-cookie로 쿠키 읽기
+    setIsLoggedIn(isLoggedInCookie === 'true');
+  }, []);
 
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
@@ -49,7 +58,7 @@ export default function NavClient({ navLinks }: NavClientProps) {
             )}
           </Link>
         ))}
-        <Login />
+        {isLoggedIn ? <Logout /> : <Login />}
       </nav>
 
       {/* 모바일 메뉴 버튼 */}
@@ -81,7 +90,7 @@ export default function NavClient({ navLinks }: NavClientProps) {
               {name}
             </Link>
           ))}
-          <Login />
+          {isLoggedIn ? <Logout /> : <Login />}
         </div>
       )}
     </>

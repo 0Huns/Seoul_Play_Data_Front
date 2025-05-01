@@ -19,13 +19,11 @@ export default function Nav() {
     <div className="w-full flex items-center justify-between">
       {/* 좌측: 로고 */}
       <Link href="/" className="flex items-center gap-2">
-        <Image src={logo} alt="logo" priority className="w-[100px]" />
+        <Image src={logo} alt="logo" priority width={100} />
       </Link>
 
       {/* 중앙 및 모바일 네비게이션 */}
       <NavClient navLinks={navLinks} />
-
-      {/* 로그인 버튼 */}
     </div>
   );
 }
