@@ -4,15 +4,16 @@ interface ReportSummaryProps {
 
 export default function ReportCard({ report }: ReportSummaryProps) {
   const tags = [...report.matchAll(/\[(.*?)\]/g)].map((match) => match[1]);
-  const details = report
+
+  const lines = report
     .replace(/\[.*?\]/g, '')
-    .split(/(?<=[.?!])\s+/)
-    .filter((line) => line.trim().length > 0)
-    .slice(0, -1);
-  const finalSentence = report
     .trim()
-    .split(/(?<=[가-힣])\s+/)
-    .pop();
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  const details = lines.slice(0, -1);
+  const finalSentence = lines[lines.length - 1];
 
   return (
     <div className="p-5 bg-yellow-50 border border-yellow-200 rounded-lg space-y-2 text-sm text-gray-800">

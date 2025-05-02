@@ -60,6 +60,14 @@ export default async function SearchResultPage({
   searchParams: Promise<URLSearchParams>;
 }) {
   const result = await fetchData(searchParams);
+  const params = await searchParams;
+
+  const selectedConditions = Object.entries(params)
+    .filter(([, value]) => value && value !== 'null')
+    .map(([, value]) => {
+      const decoded = decodeURIComponent(value.toString());
+      return `${decoded}`;
+    });
 
   const current = result?.data?.현재조건;
   const areaList = result?.data?.행정동추천;
@@ -69,6 +77,23 @@ export default async function SearchResultPage({
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <h1 className="text-2xl font-bold text-gray-800">검색 결과</h1>
+
+      {selectedConditions.length > 0 && (
+        <div className="flex items-center gap-2 bg-yellow-100 text-yellow-800 p-3 rounded-lg border border-yellow-200">
+          <span className="text-xl">🔎</span>
+          <span className="font-medium">선택 조건:</span>
+          <div className="flex flex-wrap gap-2">
+            {selectedConditions.map((condition, index) => (
+              <span
+                key={index}
+                className="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                {condition}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {current && (
         <InfoCard
