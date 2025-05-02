@@ -77,7 +77,7 @@ export default function SelectList({ id, name, data, required, onValueChange }: 
       </label>
 
       {isOpen && (
-        <ul className="absolute left-0 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-md">
+        <ul className="z-50 absolute left-0 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-md">
           {filterList.length > 0 ? (
             filterList.map((e) => (
               <li

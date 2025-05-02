@@ -97,7 +97,7 @@ export default function SearchBar() {
         {requiredFields.map((field) => (
           <div
             key={field.name}
-            className="z-10 bg-white rounded-xl hover:bg-gray-100 active:scale-95 transition-all shadow-md hover:shadow-lg border border-gray-400 font-medium cursor-pointer"
+            className="bg-white rounded-xl hover:bg-gray-100 active:shadow-inner transition-all shadow-md hover:shadow-lg border border-gray-400 font-medium cursor-pointer"
           >
             <SelectList
               id={field.id}
@@ -128,7 +128,7 @@ export default function SearchBar() {
           {optionalFields.map((field) => (
             <div
               key={field.name}
-              className="z-9 bg-white rounded-xl hover:bg-gray-100 active:scale-95 transition-all shadow-md hover:shadow-lg border border-gray-400 font-medium cursor-pointer"
+              className="bg-white rounded-xl hover:bg-gray-100 active:shadow-inner transition-all shadow-md hover:shadow-lg border border-gray-400 font-medium cursor-pointer"
             >
               <SelectList
                 id={field.id}
