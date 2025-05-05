@@ -40,7 +40,7 @@ export async function POST() {
       path: '/',
     });
 
-    res.cookies.set('isLoggedIn', 'false', {
+    res.cookies.set('auth', '', {
       httpOnly: false,
       secure: false,
       sameSite: 'strict',

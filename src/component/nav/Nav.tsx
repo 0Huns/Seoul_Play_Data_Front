@@ -11,7 +11,7 @@ export default function Nav() {
     },
     {
       name: '커뮤니티',
-      path: '/community',
+      path: '/board',
     },
   ];
 

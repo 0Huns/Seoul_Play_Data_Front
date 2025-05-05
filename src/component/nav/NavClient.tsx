@@ -26,12 +26,19 @@ const icons: Record<string, JSX.Element> = {
 export default function NavClient({ navLinks }: NavClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 쿠키에서 로그인 상태 확인
   useEffect(() => {
-    const isLoggedInCookie = Cookies.get('isLoggedIn'); // js-cookie로 쿠키 읽기
-    setIsLoggedIn(isLoggedInCookie === 'true');
+    const authCookie = Cookies.get('auth');
+
+    if (authCookie) {
+      try {
+        const authData = JSON.parse(authCookie);
+        setIsLoggedIn(authData.isLoggedIn === true);
+      } catch (error) {
+        console.error('쿠키 파싱 오류:', error);
+      }
+    }
   }, []);
 
   const isActive = (path: string) => {

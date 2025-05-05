@@ -39,13 +39,20 @@ export async function POST(req: NextRequest) {
       path: '/',
     });
 
-    res.cookies.set('isLoggedIn', 'true', {
-      httpOnly: false,
-      secure: false,
-      sameSite: 'strict',
-      maxAge: 3600,
-      path: '/',
-    });
+    res.cookies.set(
+      'auth',
+      JSON.stringify({
+        isLoggedIn: true,
+        userId: data.id,
+      }),
+      {
+        httpOnly: false,
+        secure: false,
+        sameSite: 'strict',
+        maxAge: 3600,
+        path: '/',
+      },
+    );
 
     return res;
   } catch (error) {
