@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       'auth',
       JSON.stringify({
         isLoggedIn: true,
-        userId: data.id,
+        userId: data.user.username,
       }),
       {
         httpOnly: false,
