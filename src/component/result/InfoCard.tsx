@@ -9,7 +9,7 @@ export default function InfoCard({ title, successRate, recommendation }: InfoCar
     <div className="p-5 bg-white shadow rounded-lg border">
       <h2 className="text-lg font-semibold mb-2">{title}</h2>
       <p className="text-sm text-gray-700">
-        <span className="font-medium text-gray-900">성공 확률:</span> {successRate.toFixed(2)}%
+        <span className="font-medium text-gray-900">추천 확률:</span> {successRate.toFixed(2)}%
       </p>
       <p className="text-sm">
         <span className="font-medium">추천 여부:</span>{' '}
