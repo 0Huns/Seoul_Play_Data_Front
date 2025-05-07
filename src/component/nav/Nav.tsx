@@ -13,6 +13,12 @@ export default function Nav() {
       name: '커뮤니티',
       path: '/board',
     },
+    {
+      name: '상권 분석 서비스',
+      path: 'https://golmok.seoul.go.kr/intendedOwner/intendedOwner.do',
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
   ];
 
   return (

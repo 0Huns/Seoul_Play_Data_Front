@@ -12,6 +12,8 @@ import Logout from '../auth/Logout';
 interface NavLink {
   name: string;
   path: string;
+  target?: string;
+  rel?: string;
 }
 
 interface NavClientProps {
@@ -50,10 +52,12 @@ export default function NavClient({ navLinks }: NavClientProps) {
     <>
       {/* 데스크탑 네비 */}
       <nav className="hidden md:flex gap-8 items-center absolute left-1/2 transform -translate-x-1/2">
-        {navLinks.map(({ name, path }) => (
+        {navLinks.map(({ name, path, target, rel }) => (
           <Link
             key={name}
             href={path}
+            target={target}
+            rel={rel}
             className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-all duration-300 relative
               ${isActive(path) ? 'text-red-600 bg-white shadow-sm' : 'text-white hover:text-red-300'}
             `}
@@ -80,10 +84,12 @@ export default function NavClient({ navLinks }: NavClientProps) {
       {/* 모바일 드롭다운 메뉴 */}
       {menuOpen && (
         <div className="absolute top-[72px] right-6 bg-white shadow-lg rounded-lg p-4 z-50 w-48 flex flex-col gap-3 md:hidden">
-          {navLinks.map(({ name, path }) => (
+          {navLinks.map(({ name, path, target, rel }) => (
             <Link
               key={name}
               href={path}
+              target={target}
+              rel={rel}
               onClick={() => setMenuOpen(false)}
               className={`flex items-center gap-2 text-sm px-2 py-2 rounded-md transition-colors
                 ${
