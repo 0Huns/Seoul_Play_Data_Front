@@ -29,6 +29,7 @@ export default function NavClient({ navLinks }: NavClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState('사용자');
 
   useEffect(() => {
     const authCookie = Cookies.get('auth');
@@ -37,6 +38,7 @@ export default function NavClient({ navLinks }: NavClientProps) {
       try {
         const authData = JSON.parse(authCookie);
         setIsLoggedIn(authData.isLoggedIn === true);
+        setName(authData.userId || '사용자');
       } catch (error) {
         console.error('쿠키 파싱 오류:', error);
       }
@@ -69,8 +71,16 @@ export default function NavClient({ navLinks }: NavClientProps) {
             )}
           </Link>
         ))}
-        {isLoggedIn ? <Logout /> : <Login />}
       </nav>
+
+      <div className="hidden md:flex gap-8 items-center">
+        {isLoggedIn && (
+          <div className="hidden lg:flex text-white text-sm font-semibold truncate break-words max-w-[300px]">
+            👋 <span className="text-red-300">{name}</span> 님
+          </div>
+        )}
+        {isLoggedIn ? <Logout /> : <Login />}
+      </div>
 
       {/* 모바일 메뉴 버튼 */}
       <button
@@ -84,6 +94,12 @@ export default function NavClient({ navLinks }: NavClientProps) {
       {/* 모바일 드롭다운 메뉴 */}
       {menuOpen && (
         <div className="absolute top-[72px] right-6 bg-white shadow-lg rounded-lg p-4 z-50 w-48 flex flex-col gap-3 md:hidden">
+          {isLoggedIn && (
+            <div className="text-gray-800 text-sm font-medium mb-2 border-b pb-2 break-words max-w-full">
+              👋 <span className="text-red-500 break-words max-w-full inline-block">{name}</span>
+            </div>
+          )}
+
           {navLinks.map(({ name, path, target, rel }) => (
             <Link
               key={name}

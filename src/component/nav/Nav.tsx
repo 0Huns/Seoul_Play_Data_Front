@@ -14,7 +14,7 @@ export default function Nav() {
       path: '/board',
     },
     {
-      name: '상권 분석 서비스',
+      name: '상권분석',
       path: 'https://golmok.seoul.go.kr/intendedOwner/intendedOwner.do',
       target: '_blank',
       rel: 'noopener noreferrer',
@@ -23,12 +23,10 @@ export default function Nav() {
 
   return (
     <div className="w-full flex items-center justify-between">
-      {/* 좌측: 로고 */}
       <Link href="/" className="flex items-center gap-2">
         <Image src={logo} alt="logo" priority width={100} />
       </Link>
 
-      {/* 중앙 및 모바일 네비게이션 */}
       <NavClient navLinks={navLinks} />
     </div>
   );
