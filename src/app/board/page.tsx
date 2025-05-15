@@ -5,8 +5,18 @@ import { cookies } from 'next/headers';
 import Login from '@/component/auth/Login';
 
 export const metadata: Metadata = {
-  title: '게시판 목록',
-  description: '모든 게시글을 확인해보세요.',
+  title: '커뮤니티',
+  description: '서울 창업자들과 소통하세요. Pick-On 커뮤니티에서 정보와 경험을 나눠보세요.',
+  keywords: [
+    '커뮤니티',
+    '서울 상권 분석',
+    '가게 입지 추천',
+    '창업 상권',
+    'Pick-On',
+    '서울 창업',
+    '점포 추천',
+  ],
+  creator: 'Pick-On',
 };
 
 async function getPosts() {
