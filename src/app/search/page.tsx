@@ -15,7 +15,7 @@ type CategoryItem = {
 };
 
 type MetadataProps = {
-  query: {
+  query?: {
     gu?: string;
     category?: string;
     area_type?: string;
@@ -26,7 +26,7 @@ type MetadataProps = {
 };
 
 export function generateMetadata({ query }: MetadataProps): Metadata {
-  const { gu, dong, category, area_type, age, gender } = query;
+  const { gu, dong, category, area_type, age, gender } = query || {};
 
   const titleParts = [
     dong || gu,
