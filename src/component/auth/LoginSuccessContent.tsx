@@ -1,9 +1,8 @@
-// app/login/success/page.tsx
-
 'use client';
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import LoadingCP from '../LoadingCP';
 
 export default function LoginSuccessPage() {
   const router = useRouter();
@@ -37,5 +36,9 @@ export default function LoginSuccessPage() {
     login();
   }, [searchParams, router]);
 
-  return <p className="text-center mt-10">로그인 처리 중입니다...</p>;
+  return (
+    <div className="flex justify-center items-center h-full">
+      <LoadingCP />
+    </div>
+  );
 }
