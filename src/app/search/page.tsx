@@ -14,10 +14,54 @@ type CategoryItem = {
   성공확률: number;
 };
 
-export const metadata: Metadata = {
-  title: '검색 결과',
-  description: '검색 결과 페이지입니다.',
+type MetadataProps = {
+  query: {
+    gu?: string;
+    category?: string;
+    area_type?: string;
+    dong?: string;
+    age?: string;
+    gender?: string;
+  };
 };
+
+export function generateMetadata({ query }: MetadataProps): Metadata {
+  const { gu, dong, category, area_type, age, gender } = query;
+
+  const titleParts = [
+    dong || gu,
+    category,
+    area_type,
+    age ? `${age}세` : null,
+    gender === 'male' ? '남성' : gender === 'female' ? '여성' : null,
+  ].filter(Boolean);
+
+  const title = titleParts.join(' · ') || '검색 결과';
+
+  const description = `조건에 맞는 상권 추천 결과를 확인해보세요: ${title}`;
+
+  const keywordParts = [
+    dong,
+    gu,
+    category,
+    area_type,
+    age ? `${age}대` : null,
+    gender === 'male' ? '남성' : gender === 'female' ? '여성' : null,
+    '상권분석',
+    '상권추천',
+    '창업',
+    '서울창업',
+    'Pick-On',
+  ].filter(Boolean);
+
+  const keywords = keywordParts.join(', ');
+
+  return {
+    title,
+    description,
+    keywords,
+  };
+}
 
 async function fetchData(searchParams: Promise<URLSearchParams>) {
   const cookieStore = cookies();
