@@ -1,3 +1,12 @@
-export default function Error() {
-  return <h1>없는 페이지입니다. 돌아가세요.</h1>;
+import { Metadata } from 'next';
+import ErrorCP from '@/component/ErrorCP';
+
+export const metadata: Metadata = {
+  title: '404 - 페이지를 찾을 수 없습니다',
+  description: '요청하신 페이지를 찾을 수 없습니다.',
+  robots: 'noindex',
+};
+
+export default function ErrorPage() {
+  return <ErrorCP />;
 }
