@@ -19,7 +19,7 @@ export default function LoginSuccessPage() {
         return;
       }
 
-      const res = await fetch('/login/success/api', {
+      const res = await fetch('/api/success/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
