@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://github.com/user-attachments/assets/c75088b7-82aa-4e76-9e72-451c4e48a5dd" alt="Pick-On logo" width="200">
+  <img src="https://github.com/user-attachments/assets/82de2341-4070-4738-88e6-d48a5d5becca" alt="Pick-On logo" width="200">
   <p>
   <p>
   Pick-On
@@ -26,7 +26,7 @@ Pick-On은 서울에서 창업을 준비하는 예비 사장님들을 위해
 
 ## 🛠️ 기술 스택
 
-### 프론트엔드
+### 🪄 프론트엔드
 
 <div>
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /> 
@@ -35,11 +35,13 @@ Pick-On은 서울에서 창업을 준비하는 예비 사장님들을 위해
   <img src="https://img.shields.io/badge/react--icons-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
 </div>
 
-### 배포
+### 🪄 배포
 
 <div> 
   <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
 </div>
+
+<br>
 
 - **프레임워크**: Next.js (App Router)
 - **UI 라이브러리**: React, TailwindCSS, React Icons
