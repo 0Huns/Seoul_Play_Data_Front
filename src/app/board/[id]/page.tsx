@@ -1,4 +1,4 @@
-import BackButton from '@/component/BackBtn';
+import BackButton from '@/component/common/BackBtn';
 import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import Link from 'next/link';

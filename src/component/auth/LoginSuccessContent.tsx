@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import LoadingCP from '../LoadingCP';
+import LoadingCP from '../common/LoadingCP';
 
 export default function LoginSuccessPage() {
   const router = useRouter();

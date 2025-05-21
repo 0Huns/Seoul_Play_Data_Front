@@ -13,7 +13,7 @@ export default function ErrorCP() {
         </p>
         <Link
           href="/"
-          className="inline-block px-6 py-2.5 bg-yellow-500 text-white font-medium text-sm rounded-full shadow hover:bg-yellow-600 transition"
+          className="inline-block px-6 py-2.5 bg-yellow-500 text-white font-medium text-sm font-semibold rounded-full shadow hover:bg-yellow-600 transition"
         >
           홈으로 돌아가기
         </Link>

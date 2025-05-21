@@ -1,7 +1,7 @@
 import HotTopic from '@/component/hotTopic/HotTopic';
 import SearchBar from '@/component/selectForm/SearchBar';
 import { Suspense } from 'react';
-import LoadingCP from '@/component/LoadingCP';
+import LoadingCP from '@/component/common/LoadingCP';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
