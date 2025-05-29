@@ -48,7 +48,7 @@ Pick-On은 서울에서 창업을 준비하는 예비 사장님들을 위해
 - **UI 라이브러리**: React, TailwindCSS, React Icons
 - **상태/쿠키 관리**: React Hooks, js-cookie
 - **API 통신**: fetch (RESTful API)
-- **배포/운영**: AWS(실서버), Vercel(임시)
+- **배포/운영**: AWS(통합), Vercel(프론트)
 
 <br>
 
