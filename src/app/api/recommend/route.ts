@@ -6,7 +6,7 @@ export async function POST() {
   return NextResponse.json({
     status: 'success',
     data: {
-      현재조건: { success_prob: 0.7069, recommendation: '비추천' },
+      현재조건: { success_prob: 0.7069, recommendation: '추천' },
       행정동추천: [
         { 행정동_코드_명: '삼성1동', 성공확률: 0.9991 },
         { 행정동_코드_명: '수서동', 성공확률: 0.9977 },
