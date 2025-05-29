@@ -120,7 +120,11 @@ export default async function SearchResultPage({
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <h1 className="text-2xl font-bold text-gray-800">검색 결과</h1>
+      {process.env.VERCEL ? (
+        <h1 className="text-2xl font-bold text-gray-800">아래는 결과 예시입니다(MOCK 데이터)</h1>
+      ) : (
+        <h1 className="text-2xl font-bold text-gray-800">검색 결과</h1>
+      )}
 
       {selectedConditions.length > 0 && (
         <div className="flex items-center gap-2 bg-yellow-100 text-yellow-800 p-3 rounded-lg border border-yellow-200">

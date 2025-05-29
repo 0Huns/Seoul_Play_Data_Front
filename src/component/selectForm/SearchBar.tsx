@@ -159,6 +159,16 @@ export default function SearchBar() {
             <span>검색</span>
           </button>
         </div>
+      ) : process.env.NEXT_PUBLIC_VERCEL ? (
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-lg hover:shadow-xl transition-transform duration-200 transform hover:scale-105"
+          >
+            <FiSearch className="text-xl" />
+            <span>검색</span>
+          </button>
+        </div>
       ) : (
         <div className="flex justify-end">
           <Login />
