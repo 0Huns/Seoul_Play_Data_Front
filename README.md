@@ -79,7 +79,7 @@ Pick-On은 서울에서 창업을 준비하는 예비 사장님들을 위해
 
 ## 아키텍쳐
 
-![아키텍쳐](https://github.com/user-attachments/assets/caf0ac07-8732-42c2-89ab-956c7b44bbc5)
+![아키텍쳐](https://github.com/user-attachments/assets/7fbdcfcf-1b48-4204-8f85-a67a77c05d3a)
 
 <br>
 
