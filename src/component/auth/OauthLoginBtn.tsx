@@ -19,11 +19,17 @@ export default function OauthLoginBtn() {
     <div className="flex flex-col items-center space-y-6 p-10 bg-white rounded-2xl shadow-md w-full max-w-sm mx-auto">
       <h2 className="text-2xl font-semibold text-gray-800">SNS로 로그인</h2>
 
+      <p className="text-base font-semibold text-red-700 text-center">
+        현재 로그인 관련 기능은
+        <br />
+        서버 문제로 사용하실 수 없습니다.
+      </p>
+
       <div onClick={() => handleOauthLogin('kakao')}>
         <Image
           src={kakaoLoginImage}
           alt="카카오 로그인"
-          width={250}
+          width={200}
           height={50}
           className="object-contain cursor-pointer"
         />
@@ -33,7 +39,7 @@ export default function OauthLoginBtn() {
         <Image
           src={naverLoginImage}
           alt="네이버 로그인"
-          width={250}
+          width={200}
           height={50}
           className="object-contain cursor-pointer"
         />
